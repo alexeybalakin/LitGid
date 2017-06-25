@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Student register</string>
+    <string name="app_name">LitGid</string>
     <string name="login_name">Login</string>
     <string name="hello_name">Hello</string>
     <string name="reg_name">Registration</string>
