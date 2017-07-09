@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+        android:key="save_login"
+        android:title="@string/login"
+        android:summary="@string/save_login_app" >
+    </CheckBoxPreference>
+
+    <CheckBoxPreference
+        android:key="save_password"
+        android:title="@string/password"
+        android:summary="@string/save_password_app" >
+    </CheckBoxPreference>
+
+    <ListPreference
+        android:key="language_preference"
+        android:title="@string/lang_pref"
+        android:entries="@array/languages"
+        android:entryValues="@array/languages"
+        >
+
+    </ListPreference>
+</PreferenceScreen>

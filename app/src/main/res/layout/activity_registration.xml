@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Login"
+        android:hint="@string/username"
         />
 
     <EditText
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
-        android:hint="Password"
+        android:hint="@string/password"
         />
 
     <EditText
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
-        android:hint="Comfirm password"
+        android:hint="@string/comfirm_password"
         />
 
     <LinearLayout
@@ -40,14 +40,15 @@
             android:id="@+id/okRegButton"
             android:layout_width="175dp"
             android:layout_height="wrap_content"
-            android:text="OK"/>
+            android:textAllCaps="true"
+            android:text="@string/ok"/>
 
         <Button
             android:id="@+id/cancelRegButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Cancel"/>
+            android:text="@string/cancel"/>
 
     </LinearLayout>
 

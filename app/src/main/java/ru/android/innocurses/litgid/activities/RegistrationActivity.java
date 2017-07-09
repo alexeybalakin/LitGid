@@ -1,11 +1,17 @@
-package ru.android.innocurses.litgid;
+package ru.android.innocurses.litgid.activities;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import ru.android.innocurses.litgid.R;
+import ru.android.innocurses.litgid.managers.ManagerUsers;
+import ru.android.innocurses.litgid.models.User;
 
 public class RegistrationActivity extends Activity {
 
@@ -21,13 +27,15 @@ public class RegistrationActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        setTitle(R.string.reg_name);
+        setTitle(R.string.registration);
 
         okRegButton = (Button) findViewById(R.id.okRegButton);
         cancelRegButton = (Button) findViewById(R.id.cancelRegButton);
         loginRegEditText = (EditText)  findViewById(R.id.loginRegEditText);
         pasRegEditText = (EditText)  findViewById(R.id.pasRegEditText);
         pasConfirmEditText = (EditText)  findViewById(R.id.pasConfirmEditText);
+
+
 
         okRegButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +57,9 @@ public class RegistrationActivity extends Activity {
                             "Пользователь с таким логином уже существует", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    LoginActivity.logins.put(loginRegEditText.getText().toString(), pasRegEditText.getText().toString());
+                    User user = new User(loginRegEditText.getText().toString(),pasRegEditText.getText().toString());
+                    ManagerUsers.get(RegistrationActivity.this).addUser(user);
+  //                  LoginActivity.logins.put(loginRegEditText.getText().toString(), pasRegEditText.getText().toString());
                     Toast.makeText(RegistrationActivity.this,
                             "Регистрация прошла успешно!", Toast.LENGTH_SHORT).show();
                     finish();

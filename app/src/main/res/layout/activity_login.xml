@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Username"
+        android:hint="@string/username"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         />
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
-        android:hint="Password"
+        android:hint="@string/password"
         android:layout_below="@id/loginEditText"
         android:layout_centerHorizontal="true"
         />
@@ -33,7 +33,7 @@
         android:id="@+id/okButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="@string/login"
         android:ems="10"
         android:layout_below="@id/passEditText"
         android:layout_centerHorizontal="true"
@@ -43,7 +43,7 @@
         android:id="@+id/regButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registration"
+        android:text="@string/registration"
         android:layout_below="@id/okButton"
         android:ems="10"
         android:layout_centerHorizontal="true"/>
