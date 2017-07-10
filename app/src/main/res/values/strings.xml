@@ -16,4 +16,6 @@
         <item>English</item>
     </string-array>
     <string name="preferences">Preferences</string>
+    <string name="category">Категории Лит. Произведений</string>
+    <string name="user_list">Список пользователей</string>
 </resources>

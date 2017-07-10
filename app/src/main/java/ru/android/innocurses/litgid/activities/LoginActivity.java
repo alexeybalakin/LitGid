@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import ru.android.innocurses.litgid.R;
+import ru.android.innocurses.litgid.managers.ManagerUsers;
 
 public class LoginActivity extends Activity {
     private Button regButton;
@@ -55,16 +56,16 @@ public class LoginActivity extends Activity {
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!logins.containsKey(loginEditText.getText().toString())){
+                if(ManagerUsers.get(LoginActivity.this).getUser(loginEditText.getText().toString()) == null){
                     Toast.makeText(LoginActivity.this,
                             "Пользователь с таким логином не существует", Toast.LENGTH_SHORT).show();
                 }
-                else if (!logins.get(loginEditText.getText().toString()).equals(passEditText.getText().toString())){
+                else if (!ManagerUsers.get(LoginActivity.this).getUser(loginEditText.getText()
+                        .toString()).getPassword().equals(passEditText.getText().toString())){
                     Toast.makeText(LoginActivity.this,
                             "Не верный пароль", Toast.LENGTH_SHORT).show();
                 }
                 else {
-
                         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
                         if(sharedPreferences.getBoolean("save_login", false)){
                             sharedPreferences.edit().putString("user_login", loginEditText.getText().toString()).commit();
@@ -72,7 +73,7 @@ public class LoginActivity extends Activity {
                         if(sharedPreferences.getBoolean("save_password", false)){
                             sharedPreferences.edit().putString("user_password", passEditText.getText().toString()).commit();
                         }
-                    startActivity(new Intent(context, HelloActivity.class));
+                    startActivity(new Intent(context, AdminActivity.class));
                 }
             }
         });

@@ -17,9 +17,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE `users` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE" +
-                ", `login` TEXT NOT NULL UNIQUE, `password` TEXT NOT NULL )");
-
+        sqLiteDatabase.execSQL("CREATE TABLE 'users' ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
+                " `login` TEXT NOT NULL UNIQUE, `password` TEXT NOT NULL, `blocked` INTEGER NOT NULL DEFAULT 0 )");
 
     }
 

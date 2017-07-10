@@ -52,7 +52,7 @@ public class RegistrationActivity extends Activity {
                     Toast.makeText(RegistrationActivity.this,
                             "Пароль и подтверждение не совпадают!", Toast.LENGTH_SHORT).show();
                 }
-                else if(LoginActivity.logins.containsKey(loginRegEditText.getText().toString())){
+                else if(ManagerUsers.get(RegistrationActivity.this).getUser(loginRegEditText.getText().toString()) != null){
                     Toast.makeText(RegistrationActivity.this,
                             "Пользователь с таким логином уже существует", Toast.LENGTH_SHORT).show();
                 }
