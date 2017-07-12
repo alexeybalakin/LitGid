@@ -5,62 +5,60 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
 
 import ru.android.innocurses.litgid.R;
-import ru.android.innocurses.litgid.managers.ManagerUsers;
-import ru.android.innocurses.litgid.models.User;
+
+import ru.android.innocurses.litgid.models.Writing;
 
 /**
  * Created by admin on 12.07.2017.
  */
 
-public class WritingListAdapter {
-    private List<User> users;
+public class WritingListAdapter extends RecyclerView.Adapter<WritingListAdapter.WritingHolder>{
+    private List<Writing> writings;
     private Context context;
 
-    public UserListAdapter(List<User> users, Context context) {
-        this.users = users;
+    public WritingListAdapter(List<Writing> writings, Context context) {
+        this.writings = writings;
         this.context = context;
     }
 
     @Override
-    public UserListAdapter.UserHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_list_item, parent,false);
-        return new UserListAdapter.UserHolder(v);
+    public WritingListAdapter.WritingHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.writing_list_item, parent,false);
+        return new WritingListAdapter.WritingHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(UserListAdapter.UserHolder holder, int position) {
-        final User user = users.get(position);
-        holder.tvLogin.setText(user.getLogin());
-        holder.tvPassword.setText(user.getPassword());
-        holder.cbBlocked.setChecked(user.isBlocked());
-  
-
+    public void onBindViewHolder(WritingListAdapter.WritingHolder holder, int position) {
+        final Writing writing = writings.get(position);
+        holder.tvName.setText(writing.getName());
+        holder.tvCategory.setText(writing.getCategory().getName());
+        holder.tvAuthor.setText(writing.getAuthor().getLogin());
     }
 
 
     @Override
     public int getItemCount() {
-        return users.size();
+        return writings.size();
     }
 
-    public class UserHolder extends RecyclerView.ViewHolder {
-        public TextView tvLogin;
-        public TextView tvPassword;
-        public CheckBox cbBlocked;
+    public class WritingHolder extends RecyclerView.ViewHolder {
+        public TextView tvName;
+        public TextView tvCategory;
+        public TextView tvAuthor;
 
-        public UserHolder(View itemView) {
+
+        public WritingHolder(View itemView) {
             super(itemView);
-            tvLogin = itemView.findViewById(R.id.userListItemLogin);
-            tvPassword = itemView.findViewById(R.id.userListItemPassword);
-            cbBlocked = itemView.findViewById(R.id.userListItemBlocked);
+            tvName = itemView.findViewById(R.id.tvWritingListName);
+            tvCategory = itemView.findViewById(R.id.tvWritingListCategory);
+            tvAuthor = itemView.findViewById(R.id.tvWritingListAuthor);
         }
 
     }

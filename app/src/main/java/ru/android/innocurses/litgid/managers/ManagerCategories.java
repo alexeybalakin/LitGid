@@ -82,6 +82,24 @@ public class ManagerCategories {
         }
         return categories;
     }
+
+    //Получаем из БД категорию лит. произведения
+    public Category getCategory(int categoryId){
+        Cursor cursor = query("id = ?", new String[]{""+categoryId});
+        try {
+            if (cursor.getCount() == 0) {
+                return null;
+            }
+            cursor.moveToFirst();
+            String name = cursor.getString(cursor.getColumnIndex("name"));
+            int id = cursor.getInt(cursor.getColumnIndex("id"));
+            Category category = new Category(id, name);
+            return category;
+        }
+        finally {
+            cursor.close();
+        }
+    }
 }
 
 

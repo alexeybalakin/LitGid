@@ -52,9 +52,30 @@ public class ManagerUsers {
         database.update("users", values, "id = ?", new String[]{""+user.getId()});
     }
 
-    //Получаем из БД пользователь с указанным логином
+    //Получаем из БД пользователя с указанным логином
     public User getUser(String userLogin){
         Cursor cursor = query("login = ?", new String[]{userLogin});
+        try {
+            if (cursor.getCount() == 0) {
+                return null;
+            }
+            cursor.moveToFirst();
+            String login = cursor.getString(cursor.getColumnIndex("login"));
+            String password = cursor.getString(cursor.getColumnIndex("password"));
+            int blocked =  cursor.getInt(cursor.getColumnIndex("blocked"));
+            int id = cursor.getInt(cursor.getColumnIndex("id"));
+            User user = new User(login,password, id);
+            if(blocked == 1) user.setBlocked(true);
+            return user;
+        }
+        finally {
+            cursor.close();
+        }
+    }
+
+    //Получаем из БД пользователя с указанным id
+    public User getUser(int loginId){
+        Cursor cursor = query("id = ?", new String[]{""+loginId});
         try {
             if (cursor.getCount() == 0) {
                 return null;

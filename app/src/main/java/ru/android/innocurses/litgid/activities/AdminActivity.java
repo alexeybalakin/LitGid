@@ -13,6 +13,7 @@ import ru.android.innocurses.litgid.R;
 public class AdminActivity extends Activity {
     private Button bUserList;
     private Button bCategoryList;
+    private Button bWritingList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +33,14 @@ public class AdminActivity extends Activity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(view.getContext(), CategoryListActivity.class));
+            }
+        });
+
+        bWritingList = (Button) findViewById(R.id.bWritings);
+        bWritingList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), WritingListActivity.class));
             }
         });
 

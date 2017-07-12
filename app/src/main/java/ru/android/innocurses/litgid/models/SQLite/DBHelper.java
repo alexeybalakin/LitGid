@@ -21,9 +21,16 @@ public class DBHelper extends SQLiteOpenHelper {
                 " `login` TEXT NOT NULL UNIQUE, `password` TEXT NOT NULL, `blocked` INTEGER NOT NULL DEFAULT 0 )");
         sqLiteDatabase.execSQL("CREATE TABLE `category` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, " +
                 "`name` TEXT NOT NULL UNIQUE )");
-        sqLiteDatabase.execSQL("\n" +
-                "INSERT INTO `category` VALUES (1,'Роман');\n" +
-                "INSERT INTO `category` VALUES (2,'Повесть');");
+        sqLiteDatabase.execSQL("CREATE TABLE 'writings' ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, " +
+                "`name` TEXT NOT NULL, `text` TEXT NOT NULL, `category_id` INTEGER NOT NULL, `user_id` INTEGER NOT NULL," +
+                " FOREIGN KEY(`category_id`) REFERENCES `category`(`id`), FOREIGN KEY(`user_id`) REFERENCES users(id) )");
+        sqLiteDatabase.execSQL("CREATE TABLE `comments` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, " +
+                "`comment` TEXT NOT NULL, `writing_id` INTEGER NOT NULL, `user_id` INTEGER NOT NULL," +
+                " FOREIGN KEY(`writing_id`) REFERENCES writings(id), FOREIGN KEY(`user_id`) REFERENCES users(id) )");
+        sqLiteDatabase.execSQL("INSERT INTO `users` VALUES (1,'admin','admin',0)");
+        sqLiteDatabase.execSQL("INSERT INTO `category` VALUES (1,'Роман')");
+        sqLiteDatabase.execSQL("INSERT INTO `writings` VALUES (1,'Вечерний звон','Много много текста',1,1)");
+
 
     }
 

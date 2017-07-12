@@ -16,4 +16,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/user_list"/>
+
+    <Button
+        android:id="@+id/bWritings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Список произведений"/>
 </LinearLayout>
