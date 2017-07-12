@@ -9,6 +9,7 @@ public class User {
     private String login;
     private String password;
     private boolean blocked;
+    private boolean admin;
 
     public String getLogin() {
         return login;
@@ -23,6 +24,7 @@ public class User {
         this.password = password;
         this.id = id;
         this.blocked = false;
+        this.admin = false;
     }
 
     public User(String login, String password) {
@@ -40,6 +42,10 @@ public class User {
 
     public int getId() {
         return id;
+    }
+
+    public boolean isAdmin() {
+        return admin;
     }
 }
 

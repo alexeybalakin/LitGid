@@ -19,6 +19,11 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("CREATE TABLE 'users' ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
                 " `login` TEXT NOT NULL UNIQUE, `password` TEXT NOT NULL, `blocked` INTEGER NOT NULL DEFAULT 0 )");
+        sqLiteDatabase.execSQL("CREATE TABLE `category` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, " +
+                "`name` TEXT NOT NULL UNIQUE )");
+        sqLiteDatabase.execSQL("\n" +
+                "INSERT INTO `category` VALUES (1,'Роман');\n" +
+                "INSERT INTO `category` VALUES (2,'Повесть');");
 
     }
 

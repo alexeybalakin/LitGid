@@ -12,17 +12,26 @@ import ru.android.innocurses.litgid.R;
 
 public class AdminActivity extends Activity {
     private Button bUserList;
+    private Button bCategoryList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-        setTitle(R.string.hello);
+
 
         bUserList = (Button) findViewById(R.id.bUsers);
         bUserList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(view.getContext(),UserListActivity.class));
+            }
+        });
+
+        bCategoryList = (Button) findViewById(R.id.bCategory);
+        bCategoryList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), CategoryListActivity.class));
             }
         });
 

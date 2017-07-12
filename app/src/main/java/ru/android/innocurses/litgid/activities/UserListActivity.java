@@ -12,6 +12,7 @@ import ru.android.innocurses.litgid.managers.ManagerUsers;
 public class UserListActivity extends Activity {
     private RecyclerView rvUsers;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,4 +24,5 @@ public class UserListActivity extends Activity {
         UserListAdapter adapter = new UserListAdapter(ManagerUsers.get(this).getUsers(), this);
         rvUsers.setAdapter(adapter);
     }
+
 }

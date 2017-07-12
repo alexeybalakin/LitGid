@@ -87,7 +87,7 @@ public class ManagerUsers {
     }
 
 
-    //Получаем из БД всег пользователей
+    //Получаем из БД всех пользователей
     public List<User> getUsers() {
 
         List<User> users = new ArrayList<>();
@@ -109,4 +109,10 @@ public class ManagerUsers {
         }
         return users;
     }
+
+    //Удаляем из БД пользователя
+    public  void delCategory(User user){
+        database.delete("users","id = ?", new String[]{""+user.getId()});
+    }
+
 }
