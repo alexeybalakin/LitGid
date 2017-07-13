@@ -49,6 +49,7 @@ public class CategoryListActivity extends Activity {
                     ManagerCategories.get(view.getContext()).addCategory(category);
                     adapter.add(category);
                     adapter.notifyDataSetChanged();
+                    etCategory.setText("");
                 }
             }
         });

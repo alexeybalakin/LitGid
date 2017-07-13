@@ -4,24 +4,18 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tvWritingListName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="TextView"/>
 
     <TextView
-        android:id="@+id/tvWritingListCategory"
+        android:id="@+id/tvCommentListComment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="TextView"/>
+        android:text="Комментарий"/>
 
     <TextView
-        android:id="@+id/tvWritingListAuthor"
+        android:id="@+id/tvCommentListUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="TextView"/>
+        android:text="Автор"/>
 </LinearLayout>

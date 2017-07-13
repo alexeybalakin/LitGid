@@ -32,6 +32,8 @@
         </activity>
         <activity android:name=".activities.WritingAddActivity">
         </activity>
+        <activity android:name=".activities.WritingDetailsActivity">
+        </activity>
     </application>
 
 </manifest>

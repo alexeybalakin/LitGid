@@ -1,9 +1,12 @@
 package ru.android.innocurses.litgid.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
 
 import ru.android.innocurses.litgid.R;
 import ru.android.innocurses.litgid.adapters.UserListAdapter;
@@ -13,6 +16,7 @@ import ru.android.innocurses.litgid.managers.ManagerWritings;
 
 public class WritingListActivity extends Activity {
     private RecyclerView rvWritings;
+    private Button bAddWriting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +25,15 @@ public class WritingListActivity extends Activity {
 
         rvWritings = (RecyclerView) findViewById(R.id.rvWritings);
         rvWritings.setLayoutManager(new LinearLayoutManager(this));
-
         WritingListAdapter adapter = new WritingListAdapter(ManagerWritings.get(this).getWritings(), this);
         rvWritings.setAdapter(adapter);
+
+        bAddWriting = (Button) findViewById(R.id.bAddWriting);
+        bAddWriting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), WritingAddActivity.class));
+            }
+        });
     }
 }

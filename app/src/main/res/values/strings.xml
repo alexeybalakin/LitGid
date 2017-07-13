@@ -22,4 +22,8 @@
     <string name="add">Добавить</string>
     <string name="writing_list">Литературные произведения</string>
     <string name="addWriting">Добавить лит. произведение</string>
+    <string name="writingName">Название лит. произведения</string>
+    <string name="writingText">Содержание лит. произведения</string>
+    <string name="save">Сохранить</string>
+    <string name="add_comment">Добавить комментарий</string>
 </resources>

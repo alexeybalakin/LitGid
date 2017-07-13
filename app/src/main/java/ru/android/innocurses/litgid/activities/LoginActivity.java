@@ -23,7 +23,8 @@ public class LoginActivity extends Activity {
     private EditText loginEditText;
     private EditText passEditText;
     private Context context;
-    static Map<String, String> logins = new HashMap<>();
+    private SharedPreferences sharedPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,23 +57,28 @@ public class LoginActivity extends Activity {
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ManagerUsers.get(LoginActivity.this).getUser(loginEditText.getText().toString()) == null){
-                    Toast.makeText(LoginActivity.this,
+                if(ManagerUsers.get(context).getUser(loginEditText.getText().toString()) == null){
+                    Toast.makeText(context,
                             "Пользователь с таким логином не существует", Toast.LENGTH_SHORT).show();
                 }
-                else if (!ManagerUsers.get(LoginActivity.this).getUser(loginEditText.getText()
+                else if (!ManagerUsers.get(context).getUser(loginEditText.getText()
                         .toString()).getPassword().equals(passEditText.getText().toString())){
-                    Toast.makeText(LoginActivity.this,
+                    Toast.makeText(context,
                             "Не верный пароль", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
+                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
                         if(sharedPreferences.getBoolean("save_login", false)){
                             sharedPreferences.edit().putString("user_login", loginEditText.getText().toString()).commit();
                         }
                         if(sharedPreferences.getBoolean("save_password", false)){
                             sharedPreferences.edit().putString("user_password", passEditText.getText().toString()).commit();
                         }
+                    //Сохраняем в Preferences логин пользователя
+
+                    sharedPreferences.edit().putString("current_ user", loginEditText.getText().toString()).commit();
+
+                    //Если пользователь администратор запускаем админскую активити
                     startActivity(new Intent(context, AdminActivity.class));
                 }
             }

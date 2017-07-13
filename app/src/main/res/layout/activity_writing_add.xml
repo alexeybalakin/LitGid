@@ -7,4 +7,31 @@
     android:orientation="vertical"
     tools:context="ru.android.innocurses.litgid.activities.WritingAddActivity">
 
+    <EditText
+        android:id="@+id/etWritingName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/writingName"
+        android:inputType="textPersonName"/>
+
+    <EditText
+        android:id="@+id/etWritingText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="top"
+        android:hint="@string/writingText"
+        android:inputType="textMultiLine"/>
+
+    <Spinner
+        android:id="@+id/spCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/bWritingSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:text="@string/save"/>
 </LinearLayout>

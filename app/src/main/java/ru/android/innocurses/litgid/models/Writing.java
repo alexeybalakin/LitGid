@@ -1,10 +1,12 @@
 package ru.android.innocurses.litgid.models;
 
+import java.io.Serializable;
+
 /**
  * Created by admin on 12.07.2017.
  */
 
-public class Writing {
+public class Writing{
    private int id;
    private String name;
    private String text;
@@ -24,6 +26,13 @@ public class Writing {
 
     public Writing(int id, String name, String text, Category category, User author) {
         this.id = id;
+        this.name = name;
+        this.text = text;
+        this.category = category;
+        this.author = author;
+    }
+
+    public Writing(String name, String text, Category category, User author) {
         this.name = name;
         this.text = text;
         this.category = category;

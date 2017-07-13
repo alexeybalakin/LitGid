@@ -45,12 +45,12 @@ public class ManagerWritings {
     //Добавляем в БД новое лит. произведение
     public  void addWriting(Writing writing){
         ContentValues values = getContentValues(writing);
-        database.insert("writing", null, values);
+        database.insert("writings", null, values);
     }
 
     //Удаляем из БД  лит. произведение
     public  void delWriting(Writing writing){
-        database.delete("writing","id = ?", new String[]{""+writing.getId()});
+        database.delete("writings","id = ?", new String[]{""+writing.getId()});
     }
 
     private Cursor query(String whereClause, String[] whereArgs) {
@@ -89,4 +89,25 @@ public class ManagerWritings {
         }
         return writings;
 }
+
+    //Получаем из БД лит. произведение с указанным id
+    public Writing getWriting(int writingId){
+        Cursor cursor = query("id = ?", new String[]{""+writingId});
+        try {
+            if (cursor.getCount() == 0) {
+                return null;
+            }
+            cursor.moveToFirst();
+            String name  = cursor.getString(cursor.getColumnIndex("name"));
+            String text = cursor.getString(cursor.getColumnIndex("text"));
+            int id = cursor.getInt(cursor.getColumnIndex("id"));
+            Category category = ManagerCategories.get(context).getCategory(cursor.getInt(cursor.getColumnIndex("category_id")));
+            User user = ManagerUsers.get(context).getUser(cursor.getInt(cursor.getColumnIndex("user_id")));
+            Writing writing = new Writing(id, name,text, category, user);
+            return writing;
+        }
+        finally {
+            cursor.close();
+        }
+    }
 }
