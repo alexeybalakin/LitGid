@@ -67,11 +67,33 @@ public class ManagerComments {
     }
 
 
-    //Получаем из БД список комментариев
+    //Получаем из БД список всех комментариев
     public List<Comment> getComments() {
 
         List<Comment> comments = new ArrayList<>();
         Cursor cursor = query(null, null);
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                String commentName  = cursor.getString(cursor.getColumnIndex("comment"));
+                int id = cursor.getInt(cursor.getColumnIndex("id"));
+                Writing writing = ManagerWritings.get(context).getWriting(cursor.getInt(cursor.getColumnIndex("writing_id")));
+                User user = ManagerUsers.get(context).getUser(cursor.getInt(cursor.getColumnIndex("user_id")));
+                Comment comment = new Comment(id, commentName, writing, user);
+                comments.add(comment);
+                cursor.moveToNext();
+            }
+        } finally {
+            cursor.close();
+        }
+        return comments;
+    }
+
+    //Получаем из БД список комментариев соответсвующих id Writing
+    public List<Comment> getComments(int writingId) {
+
+        List<Comment> comments = new ArrayList<>();
+        Cursor cursor = query("writing_id = ?", new String[]{""+writingId});
         try {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {

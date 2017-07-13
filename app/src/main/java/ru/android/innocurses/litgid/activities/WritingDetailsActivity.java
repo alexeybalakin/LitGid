@@ -40,8 +40,8 @@ public class WritingDetailsActivity extends Activity {
         setContentView(R.layout.activity_writing_details);
 
         //Получаем из интента  id для которого будем выводить всю информацию
-        int id =  getIntent().getIntExtra("writing",1);
-        writing = ManagerWritings.get(this).getWriting(id);
+        int writingId =  getIntent().getIntExtra("writing",1);
+        writing = ManagerWritings.get(this).getWriting(writingId);
 
         tvCategory = (TextView)  findViewById(R.id.tvWritingDetailsCategory);
         tvCategory.setText(writing.getCategory().getName());
@@ -70,9 +70,8 @@ public class WritingDetailsActivity extends Activity {
         rvComments = (RecyclerView) findViewById(R.id.rvComments);
         rvComments.setLayoutManager(new LinearLayoutManager(this));
 
-        CommentListAdapter adapter = new CommentListAdapter(ManagerComments.get(this).getComments(), this);
+        CommentListAdapter adapter = new CommentListAdapter(ManagerComments.get(this).getComments(writingId), this);
         rvComments.setAdapter(adapter);
-
 
     }
 }
