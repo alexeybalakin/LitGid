@@ -8,36 +8,71 @@
     tools:context="ru.android.innocurses.litgid.activities.WritingDetailsActivity">
 <LinearLayout
     android:orientation="horizontal"
-    android:layout_width="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
     <TextView
         android:id="@+id/tvWritingDetailsCategory"
-        android:layout_width="match_parent"
-        android:layout_weight="1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="4dp"
         android:text="Категория"/>
 
     <TextView
         android:id="@+id/tvWritingDetailsName"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="4dp"
         android:text="Название"/>
 
-    <TextView
-        android:id="@+id/tvWritingDetailsUser"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Автор"/>
 </LinearLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000000"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
     <TextView
         android:id="@+id/tvWritingDetailsText"
         android:layout_width="match_parent"
         android:layout_weight="1"
+        android:layout_margin="4dp"
         android:layout_height="wrap_content"
-        android:text="Содержимое"/>
+        android:text="Содержимое"
+        />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_gravity="right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="Автор: "/>
+
+        <TextView
+            android:id="@+id/tvWritingDetailsUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="Автор"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000000"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Комментарии пользователей:"
+        />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvComments"

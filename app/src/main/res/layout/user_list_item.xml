@@ -1,27 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="horizontal"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+              android:layout_height="wrap_content"
 
-    <TextView
-        android:id="@+id/userListItemLogin"
+    >
+
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/login"/>
+        android:id="@+id/cvUser"
+        >
 
-    <TextView
-        android:id="@+id/userListItemPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/password"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            >
 
-    <CheckBox
-        android:id="@+id/userListItemBlocked"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/userListItemLogin"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:text="Пользователь:"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/userListItemLoginData"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/userListItemPassword"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/userListItemLogin"
+                android:text="Пароль:"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-        />
+                android:id="@+id/userListItemPasswordData"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/userListItemLogin"
+                />
+            <CheckBox
+                android:id="@+id/userListItemBlocked"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/userListItemPassword"
+                android:layout_alignParentRight="true"
+                android:textSize="12sp"
+                android:text="Заблокирован"
+
+                />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
 </LinearLayout>

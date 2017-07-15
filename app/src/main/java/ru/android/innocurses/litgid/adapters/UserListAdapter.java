@@ -70,10 +70,11 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserHo
         public TextView tvPassword;
         public CheckBox cbBlocked;
 
+
         public UserHolder(View itemView) {
             super(itemView);
-            tvLogin = itemView.findViewById(R.id.userListItemLogin);
-            tvPassword = itemView.findViewById(R.id.userListItemPassword);
+            tvLogin = itemView.findViewById(R.id.userListItemLoginData);
+            tvPassword = itemView.findViewById(R.id.userListItemPasswordData);
             cbBlocked = itemView.findViewById(R.id.userListItemBlocked);
         }
 

@@ -73,7 +73,7 @@ public class WritingListAdapter extends RecyclerView.Adapter<WritingListAdapter.
             Intent intent= new Intent(context, WritingDetailsActivity.class);
             intent.putExtra("writing", writing.getId());
             context.startActivity(intent);
-        }
+     }
 
         public void bind(Writing writing){
             this.writing = writing;
