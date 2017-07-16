@@ -1,6 +1,7 @@
 package ru.android.innocurses.litgid.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.UserManager;
@@ -64,6 +65,11 @@ public class WritingAddActivity extends Activity {
                     ManagerWritings.get(view.getContext()).addWriting(writing);
                     Toast.makeText(view.getContext(),
                             "Лит. произведение добавлено", Toast.LENGTH_SHORT).show();
+            //        Intent intent = new Intent(view.getContext(), WritingListActivity.class);
+                  //  intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+             //       startActivity(intent);
+finish();
+
                 }
             }
         });

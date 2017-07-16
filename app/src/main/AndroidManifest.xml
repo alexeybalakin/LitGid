@@ -28,7 +28,8 @@
             android:name=".activities.CategoryListActivity"
             android:windowSoftInputMode="stateHidden">
         </activity>
-        <activity android:name=".activities.WritingListActivity">
+        <activity android:name=".activities.WritingListActivity"
+            >
         </activity>
         <activity android:name=".activities.WritingAddActivity">
         </activity>

@@ -66,6 +66,11 @@ public class LoginActivity extends Activity {
                     Toast.makeText(context,
                             "Не верный пароль", Toast.LENGTH_SHORT).show();
                 }
+                else if (ManagerUsers.get(context).getUser(loginEditText.getText()
+                        .toString()).isBlocked()){
+                    Toast.makeText(context,
+                            "Вам заблокирован доступ", Toast.LENGTH_SHORT).show();
+                }
                 else {
                         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
                         if(sharedPreferences.getBoolean("save_login", false)){
@@ -75,11 +80,16 @@ public class LoginActivity extends Activity {
                             sharedPreferences.edit().putString("user_password", passEditText.getText().toString()).commit();
                         }
                     //Сохраняем в Preferences логин пользователя
-
                     sharedPreferences.edit().putString("current_ user", loginEditText.getText().toString()).commit();
 
                     //Если пользователь администратор запускаем админскую активити
-                    startActivity(new Intent(context, AdminActivity.class));
+                    if("admin".equals(loginEditText.getText().toString())){
+                        startActivity(new Intent(context, AdminActivity.class));
+                    }
+                    else {
+                        startActivity(new Intent(context, WritingListActivity.class));
+                    }
+
                 }
             }
         });

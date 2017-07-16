@@ -1,6 +1,8 @@
 package ru.android.innocurses.litgid.adapters;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,15 +46,22 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserHo
         holder.cbBlocked.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(compoundButton.isChecked()) {
-                    Toast.makeText(context, "Пользователь заблокирован", Toast.LENGTH_SHORT).show();
-                    user.setBlocked(true);
-                    ManagerUsers.get(context).updateUser(user);
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+                String login  = sharedPreferences.getString("current_ user", "");
+                if(user.getLogin().equals(login)){
+                    Toast.makeText(context, "Вы не можете заблокировать сами себя", Toast.LENGTH_SHORT).show();
+                    compoundButton.setChecked(false);
                 }
                 else {
-                    Toast.makeText(context, "Пользователь разблокирован", Toast.LENGTH_SHORT).show();
-                    user.setBlocked(false);
-                    ManagerUsers.get(context).updateUser(user);
+                    if (compoundButton.isChecked()) {
+                        Toast.makeText(context, "Пользователь заблокирован", Toast.LENGTH_SHORT).show();
+                        user.setBlocked(true);
+                        ManagerUsers.get(context).updateUser(user);
+                    } else {
+                        Toast.makeText(context, "Пользователь разблокирован", Toast.LENGTH_SHORT).show();
+                        user.setBlocked(false);
+                        ManagerUsers.get(context).updateUser(user);
+                    }
                 }
             }
         });

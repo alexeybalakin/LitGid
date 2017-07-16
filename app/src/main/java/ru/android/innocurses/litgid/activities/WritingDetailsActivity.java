@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.List;
 
 import ru.android.innocurses.litgid.R;
 import ru.android.innocurses.litgid.adapters.CommentListAdapter;
@@ -32,6 +35,8 @@ public class WritingDetailsActivity extends Activity {
     private Button bAddComment;
     private RecyclerView rvComments;
     private Writing writing;
+    private CommentListAdapter adapter;
+    List<Comment> items;
 
 
     @Override
@@ -57,20 +62,31 @@ public class WritingDetailsActivity extends Activity {
             @Override
             public void onClick(View view) {
                 //Получаем из Preferences логин пользователя
-                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(view.getContext());
-                String login  = sharedPreferences.getString("current_ user", "");
-                User user = ManagerUsers.get(view.getContext()).getUser(login);
+                if(etComment.getText().toString().length() == 0){
+                    Toast.makeText(view.getContext(),
+                            "Введите ваш комментарий", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(view.getContext());
+                    String login = sharedPreferences.getString("current_ user", "");
+                    User user = ManagerUsers.get(view.getContext()).getUser(login);
 
-                //Сохраняем новый комментарий в БД
-                Comment comment = new Comment(etComment.getText().toString(),writing,user);
-                ManagerComments.get(view.getContext()).addComment(comment);
+                    //Сохраняем новый комментарий в БД
+                    Comment comment = new Comment(etComment.getText().toString(), writing, user);
+                    ManagerComments.get(view.getContext()).addComment(comment);
+
+                    //Обновляем адптер чтобы изменения сразу отобразились на экране
+                    items.add(comment);
+                    adapter.notifyDataSetChanged();
+                }
             }
         });
 
         rvComments = (RecyclerView) findViewById(R.id.rvComments);
         rvComments.setLayoutManager(new LinearLayoutManager(this));
 
-        CommentListAdapter adapter = new CommentListAdapter(ManagerComments.get(this).getComments(writingId), this);
+        items = ManagerComments.get(this).getComments(writingId);
+        adapter = new CommentListAdapter(items, this);
         rvComments.setAdapter(adapter);
 
     }

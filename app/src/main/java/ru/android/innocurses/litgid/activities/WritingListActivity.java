@@ -17,6 +17,7 @@ import ru.android.innocurses.litgid.managers.ManagerWritings;
 public class WritingListActivity extends Activity {
     private RecyclerView rvWritings;
     private Button bAddWriting;
+    private WritingListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +26,6 @@ public class WritingListActivity extends Activity {
 
         rvWritings = (RecyclerView) findViewById(R.id.rvWritings);
         rvWritings.setLayoutManager(new LinearLayoutManager(this));
-        WritingListAdapter adapter = new WritingListAdapter(ManagerWritings.get(this).getWritings(), this);
-        rvWritings.setAdapter(adapter);
 
         bAddWriting = (Button) findViewById(R.id.bAddWriting);
         bAddWriting.setOnClickListener(new View.OnClickListener() {
@@ -35,5 +34,12 @@ public class WritingListActivity extends Activity {
                 startActivity(new Intent(view.getContext(), WritingAddActivity.class));
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+            adapter = new WritingListAdapter(ManagerWritings.get(this).getWritings(), this);
+            rvWritings.setAdapter(adapter);
     }
 }
