@@ -65,10 +65,7 @@ public class WritingAddActivity extends Activity {
                     ManagerWritings.get(view.getContext()).addWriting(writing);
                     Toast.makeText(view.getContext(),
                             "Лит. произведение добавлено", Toast.LENGTH_SHORT).show();
-            //        Intent intent = new Intent(view.getContext(), WritingListActivity.class);
-                  //  intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-             //       startActivity(intent);
-finish();
+                    finish();
 
                 }
             }

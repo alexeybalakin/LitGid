@@ -2,7 +2,9 @@ package ru.android.innocurses.litgid.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
@@ -10,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -20,6 +23,7 @@ import ru.android.innocurses.litgid.managers.ManagerCategories;
 import ru.android.innocurses.litgid.managers.ManagerComments;
 import ru.android.innocurses.litgid.managers.ManagerUsers;
 import ru.android.innocurses.litgid.managers.ManagerWritings;
+import ru.android.innocurses.litgid.models.User;
 import ru.android.innocurses.litgid.models.Writing;
 
 public class WritingListActivity extends Activity {
@@ -58,16 +62,30 @@ public class WritingListActivity extends Activity {
     public boolean onContextItemSelected(MenuItem item) {
         if (item.getItemId() == CM_DELETE_ID) {
 
+            //Получаем из Preferences логин пользователя
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+            String login  = sharedPreferences.getString("current_ user", "");
 
-            // Удаляем  из БД Writing
-            Writing delWriting = adapter.getItem(adapter.delPosition);
-            ManagerWritings.get(this).delWriting(delWriting);
-            //Удаляем из БД все комментарии относящиеся к данному Writing
-            ManagerComments.get(this).delComments(delWriting);
-            //Удаляем запись из адаптера, чтобы изменения сразу отобразились на экране
-            adapter.remove(adapter.delPosition);
-            adapter.notifyDataSetChanged();
-            return true;
+            Writing writingForDelete = adapter.getItem(adapter.delPosition);
+
+            //Получаем пользователя которым был создан данный Writing
+            User user = writingForDelete.getAuthor();
+            //Проверяем, что удаляемое лит. произведение принадлежит текущему пользователю
+            //либо пользователь admin
+            if(login.equals(user.getLogin()) || login.equals("admin")) {
+
+                // Удаляем из БД Writing
+                ManagerWritings.get(this).delWriting(writingForDelete);
+                //Удаляем из БД все комментарии относящиеся к данному Writing
+                ManagerComments.get(this).delComments(writingForDelete);
+                //Удаляем запись из адаптера, чтобы изменения сразу отобразились на экране
+                adapter.remove(adapter.delPosition);
+                adapter.notifyDataSetChanged();
+                return true;
+            }
+            else{
+                Toast.makeText(this, "Вы можете удалять только свои собственные произведения", Toast.LENGTH_SHORT).show();
+            }
         }
         return super.onContextItemSelected(item);
     }
