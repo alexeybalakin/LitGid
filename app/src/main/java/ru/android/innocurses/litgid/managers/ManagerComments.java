@@ -53,6 +53,11 @@ public class ManagerComments {
         database.delete("comments","id = ?", new String[]{""+comment.getId()});
     }
 
+    //Удаляем из БД  все комментарии относящиеся к данному лит. произведению
+    public  void delComments(Writing writing){
+        database.delete("comments","writing_id = ?", new String[]{""+writing.getId()});
+    }
+
     private Cursor query(String whereClause, String[] whereArgs) {
         Cursor cursor = database.query(
                 "comments",

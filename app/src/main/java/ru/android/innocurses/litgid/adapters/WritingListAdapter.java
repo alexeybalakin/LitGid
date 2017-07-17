@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,8 @@ import ru.android.innocurses.litgid.models.Writing;
 public class WritingListAdapter extends RecyclerView.Adapter<WritingListAdapter.WritingHolder>{
     private List<Writing> writings;
     private Context context;
+    private static final int CM_DELETE_ID = 1;
+    public  int delPosition;
 
     public WritingListAdapter(List<Writing> writings, Context context) {
         this.writings = writings;
@@ -43,19 +46,28 @@ public class WritingListAdapter extends RecyclerView.Adapter<WritingListAdapter.
         holder.bind(writing);
     }
 
+    public Writing getItem(int position){
+        return writings.get(position);
+    }
+
+    public void remove(int position){
+        writings.remove(position);
+    }
+
 
     @Override
     public int getItemCount() {
         return writings.size();
     }
 
-     class WritingHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+     class WritingHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnCreateContextMenuListener {
         private TextView tvName;
         private TextView tvCategory;
         private TextView tvAuthor;
         private Writing writing;
          private ImageView ivBook;
          private CardView cv;
+
 
 
          WritingHolder(View itemView) {
@@ -66,6 +78,7 @@ public class WritingListAdapter extends RecyclerView.Adapter<WritingListAdapter.
              ivBook = itemView.findViewById(R.id.ivBook);
              cv = itemView.findViewById(R.id.cv);
              itemView.setOnClickListener(this);
+             itemView.setOnCreateContextMenuListener(this);
         }
 
         @Override
@@ -83,5 +96,12 @@ public class WritingListAdapter extends RecyclerView.Adapter<WritingListAdapter.
             ivBook.setImageResource(R.drawable.minibook);
 
         }
-    }
+
+         @Override
+         public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+             contextMenu.add(0, CM_DELETE_ID, 0, "Удалить лит. произведение");
+             delPosition = getAdapterPosition();
+
+         }
+     }
 }

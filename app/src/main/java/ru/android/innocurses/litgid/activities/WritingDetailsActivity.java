@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -54,6 +55,7 @@ public class WritingDetailsActivity extends Activity {
         tvWritingName.setText(writing.getName());
         tvWritingDetails = (TextView)  findViewById(R.id.tvWritingDetailsText);
         tvWritingDetails.setText(writing.getText());
+        tvWritingDetails.setMovementMethod(new ScrollingMovementMethod());
         tvUser = (TextView)  findViewById(R.id.tvWritingDetailsUser);
         tvUser.setText(writing.getAuthor().getLogin());
         etComment = (EditText) findViewById(R.id.etWritingDetailsComment);
@@ -61,12 +63,13 @@ public class WritingDetailsActivity extends Activity {
         bAddComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Получаем из Preferences логин пользователя
+
                 if(etComment.getText().toString().length() == 0){
                     Toast.makeText(view.getContext(),
                             "Введите ваш комментарий", Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    //Получаем из Preferences логин пользователя
                     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(view.getContext());
                     String login = sharedPreferences.getString("current_ user", "");
                     User user = ManagerUsers.get(view.getContext()).getUser(login);

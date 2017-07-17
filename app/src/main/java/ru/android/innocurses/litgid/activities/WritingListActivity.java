@@ -5,19 +5,29 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+
+import java.util.List;
 
 import ru.android.innocurses.litgid.R;
 import ru.android.innocurses.litgid.adapters.UserListAdapter;
 import ru.android.innocurses.litgid.adapters.WritingListAdapter;
+import ru.android.innocurses.litgid.managers.ManagerCategories;
+import ru.android.innocurses.litgid.managers.ManagerComments;
 import ru.android.innocurses.litgid.managers.ManagerUsers;
 import ru.android.innocurses.litgid.managers.ManagerWritings;
+import ru.android.innocurses.litgid.models.Writing;
 
 public class WritingListActivity extends Activity {
+    private static final int CM_DELETE_ID = 1;
     private RecyclerView rvWritings;
     private Button bAddWriting;
     private WritingListAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +49,26 @@ public class WritingListActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+
             adapter = new WritingListAdapter(ManagerWritings.get(this).getWritings(), this);
             rvWritings.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        if (item.getItemId() == CM_DELETE_ID) {
+
+
+            // Удаляем  из БД Writing
+            Writing delWriting = adapter.getItem(adapter.delPosition);
+            ManagerWritings.get(this).delWriting(delWriting);
+            //Удаляем из БД все комментарии относящиеся к данному Writing
+            ManagerComments.get(this).delComments(delWriting);
+            //Удаляем запись из адаптера, чтобы изменения сразу отобразились на экране
+            adapter.remove(adapter.delPosition);
+            adapter.notifyDataSetChanged();
+            return true;
+        }
+        return super.onContextItemSelected(item);
     }
 }
