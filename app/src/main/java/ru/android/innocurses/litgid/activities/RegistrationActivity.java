@@ -59,7 +59,7 @@ public class RegistrationActivity extends Activity {
                 else {
                     User user = new User(loginRegEditText.getText().toString(),pasRegEditText.getText().toString());
                     ManagerUsers.get(RegistrationActivity.this).addUser(user);
-  //                  LoginActivity.logins.put(loginRegEditText.getText().toString(), pasRegEditText.getText().toString());
+
                     Toast.makeText(RegistrationActivity.this,
                             "Регистрация прошла успешно!", Toast.LENGTH_SHORT).show();
                     finish();

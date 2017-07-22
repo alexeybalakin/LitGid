@@ -15,7 +15,7 @@
     <ListPreference
         android:key="language_preference"
         android:title="@string/lang_pref"
-        android:entries="@array/languages"
+        android:entries="@array/langEntry"
         android:entryValues="@array/languages"
         >
 

@@ -3,7 +3,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:label="Hello">
+              >
 
     <Button
         android:id="@+id/bCategory"
@@ -21,5 +21,5 @@
         android:id="@+id/bWritings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Список произведений"/>
+        android:text="@string/writing_list"/>
 </LinearLayout>
