@@ -38,9 +38,10 @@
 
         <Button
             android:id="@+id/okRegButton"
-            android:layout_width="175dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAllCaps="true"
+            android:layout_weight="1"
             android:text="@string/ok"/>
 
         <Button

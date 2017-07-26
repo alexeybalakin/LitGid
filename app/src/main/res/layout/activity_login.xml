@@ -3,20 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="ru.android.innocurses.studentregister.MainActivity">
-
-
-    <EditText
-        android:id="@+id/loginEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/username"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        />
+    android:layout_height="match_parent">
 
     <EditText
         android:id="@+id/passEditText"
@@ -25,8 +12,19 @@
         android:ems="10"
         android:inputType="textPassword"
         android:hint="@string/password"
-        android:layout_below="@id/loginEditText"
+
         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        />
+    <EditText
+        android:id="@+id/loginEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/username"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/passEditText"
         />
 
     <Button
